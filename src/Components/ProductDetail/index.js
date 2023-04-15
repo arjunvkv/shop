@@ -1,22 +1,48 @@
 import React, { useContext, useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { HiShoppingCart } from "react-icons/hi";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillSignal, AiOutlineHeart } from "react-icons/ai";
 import { CartContext } from "../../Api/CartContext";
 import { getProduct } from "../../Api/ProductApi";
-
+import { FavouritesContext } from "../../Api/FavouritesContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = ({ productId, page }) => {
   const [cartCount, setcartCount] = useContext(CartContext);
+  const [favouritesCount, setfavouritesCount] = useContext(FavouritesContext);
   const [image, setImage] = useState(1);
   const [productDetail, setProductDetail] = useState({});
+
+  const isInCartNotify = () => toast.error("Item already present");
+  const addToCartNotify = () => toast("Item added to cart");
+  const isInFavouritesNotify = () =>
+    toast.error("Item already present in favourites");
+  const addToFavouritesNotify = () => toast("Item added to Favourites");
+
   useEffect(() => {
     const getProductDetails = async () => {
       const productDetail = await (await getProduct(productId)).json();
       setProductDetail(productDetail);
-      console.log("productDetail :>>>>", productDetail);
     };
     getProductDetails();
-  }, []);
+  }, [productId]);
+
+  const addToCart = (id) => {
+    if (!cartCount.includes(id)) {
+      setcartCount((prev) => [...prev, productDetail.id]);
+      addToCartNotify();
+    } else {
+      isInCartNotify();
+    }
+  };
+  const addToFavourites = (id) => {
+    if (!favouritesCount.includes(id)) {
+      setfavouritesCount((prev) => [...prev, productDetail.id]);
+      addToFavouritesNotify();
+    } else {
+      isInFavouritesNotify();
+    }
+  };
   return (
     <div className="text-dark-green p-5">
       {productDetail && (
@@ -56,14 +82,20 @@ const ProductDetail = ({ productId, page }) => {
                 <div>
                   {page === "productDetailPage" && (
                     <div className="add-to-cart flex gap-4 items-center">
-                      <button className="button">
-                        <HiShoppingCart
-                          onClick={() => {
-                            setcartCount((prev) => [...prev, productDetail.id]);
-                          }}
-                        />
+                      <button
+                        className="button"
+                        onClick={() => {
+                          addToCart(productDetail.id);
+                        }}
+                      >
+                        <HiShoppingCart />
                       </button>
-                      <button className="button">
+                      <button
+                        className="button"
+                        onClick={() => {
+                          addToFavourites(productDetail.id);
+                        }}
+                      >
                         <AiOutlineHeart />
                       </button>
                     </div>
@@ -74,6 +106,7 @@ const ProductDetail = ({ productId, page }) => {
           </div>
         </div>
       )}
+      <ToastContainer theme="dark" position="top-left" />
     </div>
   );
 };

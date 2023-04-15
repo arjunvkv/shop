@@ -6,9 +6,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CartContext } from "../../Api/CartContext";
+import { FavouritesContext } from "../../Api/FavouritesContext";
 
 const Nav = () => {
   const [cartCount] = useContext(CartContext);
+  const [favouritesCount, setfavouritesCount] = useContext(FavouritesContext);
   return (
     <div className="nav-container sticky w-full bg-light-green text-dark-green font-bold capitalize flex items-center justify-between p-2">
       <div className="logo shadow-md">
@@ -33,33 +35,28 @@ const Nav = () => {
       <div className="nav-buttons hidden md:block">
         <ul className="flex gap-5">
           <li className="button">
-            <a href="">
-              <Link to="/">Menu</Link>
-            </a>
+            <Link to="/">Menu</Link>
           </li>
           <li className="button">
-            <a href="">
-              <Link to="/favourites">
+            <Link to="/favourites">
+              <div className="flex">
                 <AiOutlineHeart fontSize="1.5em" />
-              </Link>
-            </a>
+                <p className="relative -top-3">{favouritesCount.length}</p>
+              </div>
+            </Link>
           </li>
           <li className="button">
-            <a href="">
-              <Link to="/cart">
-                <div className="flex">
-                  <HiShoppingCart fontSize="1.5em" />
-                  <p className="relative -top-3">{cartCount.length}</p>
-                </div>
-              </Link>
-            </a>
+            <Link to="/cart">
+              <div className="flex">
+                <HiShoppingCart fontSize="1.5em" />
+                <p className="relative -top-3">{cartCount.length}</p>
+              </div>
+            </Link>
           </li>
           <li className="button">
-            <a href="">
-              <Link to="/profile">
-                <MdOutlineAccountBox fontSize="1.5em" />
-              </Link>
-            </a>
+            <Link to="/profile">
+              <MdOutlineAccountBox fontSize="1.5em" />
+            </Link>
           </li>
         </ul>
       </div>

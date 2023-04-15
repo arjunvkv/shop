@@ -6,7 +6,10 @@ const Cart = () => {
   const [cartCount, setcartCount] = useContext(CartContext);
   return (
     <div>
-      {cartCount.map((itemId) => {
+      {cartCount.length === 0 && (
+        <p className="w-full p-10 text-center font-bold">Your cart is empty</p>
+      )}
+      {cartCount?.map((itemId) => {
         return (
           <div className="cartItems" key={itemId}>
             <ProductDetail productId={itemId} page={"Cart"} />

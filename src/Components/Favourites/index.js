@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
-import { FavouritesContext } from "../../Api/CartContext";
+import { FavouritesContext } from "../../Api/FavouritesContext";
 import ProductDetail from "../ProductDetail";
 
-const Cart = () => {
+const Favourites = () => {
   const [favouritesCount, setfavouritesCount] = useContext(FavouritesContext);
   return (
     <div>
+      {favouritesCount.length === 0 && (
+        <p className="w-full p-10 text-center font-bold">
+          Your favourites is empty
+        </p>
+      )}
       {favouritesCount.map((itemId) => {
         return (
           <div className="cartItems" key={itemId}>
-            <ProductDetail productId={itemId} page={"Cart"} />
+            <ProductDetail productId={itemId} page={"Favourites"} />
           </div>
         );
       })}

@@ -25,7 +25,6 @@ const contentStyle = {
 const Home = () => {
   const CarouselRef = useRef(null);
   const [products, setProducts] = useContext(ProductContext);
-  console.log("products :>>>>", products);
   return (
     <div className="h-screen relative bg-primary-light">
       <div className="w-full text-center">
