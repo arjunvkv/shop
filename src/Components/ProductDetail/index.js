@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = ({ productId, page }) => {
   const [cartCount, setcartCount] = useContext(CartContext);
   const [favouritesCount, setfavouritesCount] = useContext(FavouritesContext);
-  const [image, setImage] = useState(1);
+  const [image, setImage] = useState(0);
   const [productDetail, setProductDetail] = useState({});
 
   const isInCartNotify = () => toast.error("Item already present");
@@ -50,7 +50,7 @@ const ProductDetail = ({ productId, page }) => {
           <div className="md:w-7/12 lg:w-auto w-full h-auto">
             <img src={productDetail?.images?.[image]} alt="" width="" />
           </div>
-          <div className="space-y-3 lg:space-y-4 text-sm lg:text-3xl font-bold w-full md:px-5 mt-5 md:mt-0">
+          <div className="space-y-3 lg:space-y-4 flex flex-col justify-around text-sm lg:text-3xl font-bold w-full md:px-5 mt-5 md:mt-0">
             <h2 className="font-bold">{productDetail.title}</h2>
             <p className="">${productDetail.price}</p>
             <div className="rating flex text-2xl space-x-3">
@@ -98,6 +98,11 @@ const ProductDetail = ({ productId, page }) => {
                       >
                         <AiOutlineHeart />
                       </button>
+                    </div>
+                  )}
+                  {page === "Cart" && (
+                    <div className="add-to-cart flex gap-4 items-center">
+                      <button className="button text-base">Buy</button>
                     </div>
                   )}
                 </div>
