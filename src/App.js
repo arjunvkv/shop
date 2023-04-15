@@ -1,11 +1,16 @@
-import './App.css';
+import "./App.scss";
+import Home from "./Components/Home";
+import Nav from "./Components/Nav";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-primary-light">
       <header className="App-header">
+        <Nav />
       </header>
-      <div>hai</div>
+      <body>
+        <Home />
+      </body>
     </div>
   );
 }
