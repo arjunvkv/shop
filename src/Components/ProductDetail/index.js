@@ -46,11 +46,11 @@ const ProductDetail = ({ productId, page }) => {
   return (
     <div className="text-dark-green p-5">
       {productDetail && (
-        <div className="flex gap-5 ">
-          <div className="w-4/12 h-auto">
+        <div className="md:flex-row flex-col gap-5 md:flex">
+          <div className="md:w-7/12 lg:w-auto w-full h-auto">
             <img src={productDetail?.images?.[image]} alt="" width="" />
           </div>
-          <div className="space-y-5 text-3xl font-bold w-full px-5">
+          <div className="space-y-3 lg:space-y-4 text-sm lg:text-3xl font-bold w-full md:px-5 mt-5 md:mt-0">
             <h2 className="font-bold">{productDetail.title}</h2>
             <p className="">${productDetail.price}</p>
             <div className="rating flex text-2xl space-x-3">
