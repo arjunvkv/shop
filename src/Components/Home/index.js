@@ -30,7 +30,7 @@ const Home = () => {
       <div className="w-full text-center">
         <h3 className="button font-bold text-dark-green">Products</h3>
       </div>
-      <Carousel effect="fade" autoplay ref={CarouselRef}>
+      <Carousel effect="scrollx" autoplay ref={CarouselRef} dots={false}>
         {products?.products?.map((item) => {
           return (
             <div className="product" key={item.id}>
@@ -67,6 +67,19 @@ const Home = () => {
           );
         })}
       </Carousel>
+      <div className="dots flex w-fit m-auto p-3 gap-5 items-center justify-center md:gap-10 text-red-500 relative -top-16 rounded-lg bg-gray-200">
+        {products?.products?.map((item, i) => {
+          return (
+            <img
+              className="w-8 rounded-full h-8 bg-red-500"
+              src={item.thumbnail}
+              onClick={() => {
+                CarouselRef.current.goTo(i);
+              }}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
