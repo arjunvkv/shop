@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { HiShoppingCart } from "react-icons/hi";
 import { AiFillSignal, AiOutlineHeart } from "react-icons/ai";
-import { CartContext } from "../../Api/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import { getProduct } from "../../Api/ProductApi";
-import { FavouritesContext } from "../../Api/FavouritesContext";
+import { FavouritesContext } from "../../Context/FavouritesContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = ({ productId, page }) => {
@@ -13,10 +13,10 @@ const ProductDetail = ({ productId, page }) => {
   const [image, setImage] = useState(0);
   const [productDetail, setProductDetail] = useState({});
 
-  const isInCartNotify = () => toast.error("Item already present");
-  const addToCartNotify = () => toast("Item added to cart");
+  const isInCartNotify = () => toast.error("Item already present in Cart");
+  const addToCartNotify = () => toast("Item added to Cart");
   const isInFavouritesNotify = () =>
-    toast.error("Item already present in favourites");
+    toast.error("Item already present in Favourites");
   const addToFavouritesNotify = () => toast("Item added to Favourites");
 
   useEffect(() => {

@@ -5,8 +5,8 @@ import { HiShoppingCart } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { CartContext } from "../../Api/CartContext";
-import { FavouritesContext } from "../../Api/FavouritesContext";
+import { CartContext } from "../../Context/CartContext";
+import { FavouritesContext } from "../../Context/FavouritesContext";
 
 const Nav = () => {
   const [cartCount] = useContext(CartContext);

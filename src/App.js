@@ -5,10 +5,10 @@ import Nav from "./Components/Nav";
 import { ProductContextProvider } from "./Context/ProductContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Product from "./Components/Product";
-import { CartContextProvider } from "./Api/CartContext";
+import { CartContextProvider } from "./Context/CartContext";
 import Cart from "./Components/Cart";
 import Favourites from "./Components/Favourites";
-import { FavouritesContextProvider } from "./Api/FavouritesContext";
+import { FavouritesContextProvider } from "./Context/FavouritesContext";
 import Profile from "./Components/Profile";
 
 function App() {
